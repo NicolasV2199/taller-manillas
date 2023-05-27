@@ -4,15 +4,34 @@
   box-sizing: border-box;
 }
 
-#root{
+body, html{
+  width: 100%;
+  overflow-x: hidden;
+}
+
+div#root {
+  height: auto; /* remove this line to see div.app is no more 100% height */
   min-height: 100vh;
+  background-color: cadetblue;
 }
 
 .home-container{
-  padding: 3rem;
+  padding: 1rem 2rem;
+  
 }
 
 .card{
+  padding: 1rem;
+}
+
+.main-card{
+  padding: 1rem 3rem;
+}
+
+.material-card{
   width: 280px;
 }
 
+.material-card img{
+  width: 100%;
+}
