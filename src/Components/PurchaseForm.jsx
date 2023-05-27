@@ -1,4 +1,3 @@
-import { useState } from "react";
 import options from "../helpers/options"
 import { useForm } from "../hooks/useForm";
 
@@ -8,19 +7,14 @@ const [materials, charms, types] = options;
 
 export const PurchaseForm = () => {
 
-  const {onInputChange, onResetForm, material, charm, type} = useForm({
+  const {onInputChange, onResetForm, material, charm, type, currency, quantity, buyersName} = useForm({
     material: 'Leather',
     charm: 'Hammer',
-    type: 'Gold',
+    buyersName: '',
+    currency: 'Dolars',
+    quantity: '',
   });
 
-  /* const [material, setmaterial] = useState('Leather');
-  const [charm, setcharm] = useState('Hammer');
-  const [type, settype] = useState('Gold'); */
-
-  const [buyersName, setbuyersName] = useState('');
-  const [currency, setcurrency] = useState('Dolars');
-  const [quantity, setquantity] = useState('');
 
   const submitBuy = () => {
     const validQuantity = quantity ?? undefined;
@@ -92,9 +86,10 @@ export const PurchaseForm = () => {
               type="text"
               className="form-control"
               placeholder="Enter your name"
+              name="buyersName"
               value={buyersName}
               id="name"
-              onChange={(e) => setbuyersName(e.target.value)}
+              onChange={onInputChange}
             />
           </div>
         </div>
@@ -103,7 +98,7 @@ export const PurchaseForm = () => {
         <div className="form-group col-md-4 my-1">
           <label htmlFor="currency">Currency</label>
           <div className="input-group">
-            <select className="form-select" id="currency" value={currency} onChange={(e) => setcurrency(e.target.value)}>
+            <select className="form-select" id="currency" value={currency} name="currency" onChange={onInputChange}>
               <option value="Dolars">Dolars</option>
               <option value="Pesos">Colombian pesos</option>
             </select>
@@ -118,7 +113,8 @@ export const PurchaseForm = () => {
               type="number"
               className="form-control"
               value={quantity}
-              onChange={(e) => setquantity(e.target.value)}
+              name="quantity"
+              onChange={onInputChange}
               id="quantity"
               placeholder="Enter the number of bracelets you want"
             />
