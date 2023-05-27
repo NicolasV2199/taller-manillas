@@ -1,10 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './assets/styles/styles.css'
-import { HomePage } from './Pages/HomePage.jsx'
+import { BraceletsApp } from './BraceletsApp'
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <HomePage />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <React.StrictMode>
+      <BraceletsApp />
+    </React.StrictMode>,
+  </BrowserRouter>
 )
