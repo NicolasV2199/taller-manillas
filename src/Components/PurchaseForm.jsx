@@ -1,5 +1,6 @@
 import { useState } from "react";
 import options from "../helpers/options"
+import { useForm } from "../hooks/useForm";
 
 /*global Swal */
 
@@ -7,9 +8,15 @@ const [materials, charms, types] = options;
 
 export const PurchaseForm = () => {
 
-  const [material, setmaterial] = useState('Rope');
+  const {onInputChange, onResetForm, material, charm, type} = useForm({
+    material: 'Leather',
+    charm: 'Hammer',
+    type: 'Gold',
+  });
+
+  /* const [material, setmaterial] = useState('Leather');
   const [charm, setcharm] = useState('Hammer');
-  const [type, settype] = useState('Gold');
+  const [type, settype] = useState('Gold'); */
 
   const [buyersName, setbuyersName] = useState('');
   const [currency, setcurrency] = useState('Dolars');
@@ -38,7 +45,7 @@ export const PurchaseForm = () => {
         <div className="card material-card my-2 mx-3">
           <h3 className="text-center">{materials.title}</h3>
           <img src={materials.image} alt="" className="my-4 rounded" />
-          <select className="form-select" aria-label="Default select example" value={material} onChange={(e) => setmaterial(e.target.value)}>
+          <select className="form-select" aria-label="Default select example" value={material} name="material" onChange={onInputChange}>
             {
               materials.list.map((item) => (
                 <option key={item.id} value={item.value}>{item.name}</option>
@@ -51,7 +58,7 @@ export const PurchaseForm = () => {
         <div className="card material-card my-2 mx-3">
           <h3 className="text-center">{charms.title}</h3>
           <img src={charms.image} alt="" className="my-4 rounded" />
-          <select className="form-select" aria-label="Default select example" value={charm} onChange={(e) => setcharm(e.target.value)}>
+          <select className="form-select" aria-label="Default select example" value={charm} name="charm" onChange={onInputChange}>
             {
               charms.list.map((item) => (
                 <option key={item.id} value={item.value}>{item.name}</option>
@@ -64,7 +71,7 @@ export const PurchaseForm = () => {
         <div className="card material-card my-2 mx-3">
           <h3 className="text-center">{types.title}</h3>
           <img src={types.image} alt="" className="my-4 rounded" />
-          <select className="form-select" aria-label="Default select example" value={type} onChange={(e) => settype(e.target.value)}>
+          <select className="form-select" aria-label="Default select example" value={type} name="type" onChange={onInputChange}>
             {
               types.list.map((item) => (
                 <option key={item.id} value={item.value}>{item.name}</option>
